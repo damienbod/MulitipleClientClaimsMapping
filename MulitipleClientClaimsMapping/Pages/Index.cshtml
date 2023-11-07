@@ -1,0 +1,12 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+@foreach(var claim in Model.Claims)
+{
+    <div><b>@claim.Type</b> @claim.Value</div>
+}
+</div>
