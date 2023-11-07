@@ -1,4 +1,8 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
+
 namespace MulitipleClientClaimsMapping.Pages;
 
 public class IndexModel : PageModel

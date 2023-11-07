@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34219.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MulitipleClientClaimsMapping", "MulitipleClientClaimsMapping\MulitipleClientClaimsMapping.csproj", "{10AD66FA-8836-43C0-AC00-C28BEAAF033F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MulitipleClientClaimsMapping", "MulitipleClientClaimsMapping\MulitipleClientClaimsMapping.csproj", "{10AD66FA-8836-43C0-AC00-C28BEAAF033F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityProvider", "IdentityProvider\IdentityProvider.csproj", "{F2112C3E-618D-4218-A4C4-BA01F23709C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "identityserver\IdentityServer.csproj", "{7B54659A-2602-449C-82D0-CD056F2FA162}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{10AD66FA-8836-43C0-AC00-C28BEAAF033F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10AD66FA-8836-43C0-AC00-C28BEAAF033F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10AD66FA-8836-43C0-AC00-C28BEAAF033F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2112C3E-618D-4218-A4C4-BA01F23709C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2112C3E-618D-4218-A4C4-BA01F23709C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2112C3E-618D-4218-A4C4-BA01F23709C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2112C3E-618D-4218-A4C4-BA01F23709C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B54659A-2602-449C-82D0-CD056F2FA162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B54659A-2602-449C-82D0-CD056F2FA162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B54659A-2602-449C-82D0-CD056F2FA162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B54659A-2602-449C-82D0-CD056F2FA162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
