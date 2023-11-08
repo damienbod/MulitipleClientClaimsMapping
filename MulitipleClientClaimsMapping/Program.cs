@@ -35,7 +35,7 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
-// Add services to the container.
+builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
 
@@ -60,6 +60,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapRazorPages();
 
 app.Run();
