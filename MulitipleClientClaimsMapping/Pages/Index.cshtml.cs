@@ -1,10 +1,12 @@
 ﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
 
 namespace MulitipleClientClaimsMapping.Pages;
 
+//[Authorize(AuthenticationSchemes = "t1,t2")]
 public class IndexModel : PageModel
 {
     [BindProperty]
