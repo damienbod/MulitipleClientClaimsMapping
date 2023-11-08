@@ -47,7 +47,7 @@ public class Worker : IHostedService
 
             // OIDC Code flow confidential client
             var client = await manager.FindByClientIdAsync("codeflowpkceclient");
-            if (await manager.FindByClientIdAsync("codeflowpkceclient") is null)
+            if (client is null)
             {
                 await manager.CreateAsync(new OpenIddictApplicationDescriptor
                 {
