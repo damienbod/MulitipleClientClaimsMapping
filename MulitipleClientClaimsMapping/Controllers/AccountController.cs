@@ -9,8 +9,17 @@ namespace MulitipleClientClaimsMapping.Controllers;
 [Route("api/[controller]")]
 public class AccountController : ControllerBase
 {
-    [HttpGet("Login")]
-    public ActionResult Login(string returnUrl)
+    [HttpGet("LoginOpenIddict")]
+    public ActionResult LoginOpenIddict(string returnUrl)
+    {
+        return Challenge(new AuthenticationProperties
+        {
+            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
+        });
+    }
+
+    [HttpGet("LoginIdentityServer")]
+    public ActionResult LoginIdentityServer(string returnUrl)
     {
         return Challenge(new AuthenticationProperties
         {
