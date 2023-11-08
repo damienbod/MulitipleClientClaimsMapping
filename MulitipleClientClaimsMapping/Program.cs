@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,20 +16,19 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
-    .AddCookie()
-    .AddOpenIdConnect(options =>
+.AddCookie()
+    .AddOpenIdConnect(options => // OpenIddict server 
     {
-        options.SignInScheme = "Cookies";
-        options.Authority = stsServer;
-        options.RequireHttpsMetadata = true;
-        options.ClientId = "codeflowpkceclient";
-        options.ClientSecret = "codeflow_pkce_client_secret";
-        options.ResponseType = "code";
-        options.UsePkce = true;
-        options.Scope.Add("profile");
-        options.Scope.Add("offline_access");
+        builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
+        options.Authority = builder.Configuration["IdentityProviderSettings:Authority"];
+        options.ClientId = builder.Configuration["IdentityProviderSettings:ClientId"];
+        options.ClientSecret = builder.Configuration["IdentityProviderSettings:ClientSecret"];
+
+        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.ResponseType = OpenIdConnectResponseType.Code;
+
         options.SaveTokens = true;
-        options.MapInboundClaims = false;
+        options.GetClaimsFromUserInfoEndpoint = true;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             NameClaimType = "name"
