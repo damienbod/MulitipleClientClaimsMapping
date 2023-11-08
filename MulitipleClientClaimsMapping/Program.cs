@@ -19,10 +19,10 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
     .AddOpenIdConnect(options => // OpenIddict server 
     {
-        builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
-        options.Authority = builder.Configuration["IdentityProviderSettings:Authority"];
-        options.ClientId = builder.Configuration["IdentityProviderSettings:ClientId"];
-        options.ClientSecret = builder.Configuration["IdentityProviderSettings:ClientSecret"];
+        builder.Configuration.GetSection("IdentityServerSettings").Bind(options);
+        options.Authority = builder.Configuration["IdentityServerSettings:Authority"];
+        options.ClientId = builder.Configuration["IdentityServerSettings:ClientId"];
+        options.ClientSecret = builder.Configuration["IdentityServerSettings:ClientSecret"];
 
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.ResponseType = OpenIdConnectResponseType.Code;
@@ -34,15 +34,31 @@ builder.Services.AddAuthentication(options =>
             NameClaimType = "name"
         };
     });
+    //.AddOpenIdConnect(options => // OpenIddict server 
+    //{
+    //    builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
+    //    options.Authority = builder.Configuration["IdentityProviderSettings:Authority"];
+    //    options.ClientId = builder.Configuration["IdentityProviderSettings:ClientId"];
+    //    options.ClientSecret = builder.Configuration["IdentityProviderSettings:ClientSecret"];
+
+    //    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    //    options.ResponseType = OpenIdConnectResponseType.Code;
+
+    //    options.SaveTokens = true;
+    //    options.GetClaimsFromUserInfoEndpoint = true;
+    //    options.TokenValidationParameters = new TokenValidationParameters
+    //    {
+    //        NameClaimType = "name"
+    //    };
+    //});
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
 
-
 var app = builder.Build();
 
 IdentityModelEventSource.ShowPII = true;
-JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
+//JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
