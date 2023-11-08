@@ -15,7 +15,7 @@ public class AccountController : ControllerBase
         return Challenge(new AuthenticationProperties
         {
             RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/", 
-        }, "t1");
+        }, "t2");
     }
 
     [HttpGet("LoginIdentityServer")]
@@ -24,7 +24,7 @@ public class AccountController : ControllerBase
         return Challenge(new AuthenticationProperties
         {
             RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
-        }, "t2");
+        }, "t1");
     }
 
     [ValidateAntiForgeryToken]

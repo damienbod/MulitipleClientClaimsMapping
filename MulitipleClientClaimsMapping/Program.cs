@@ -15,7 +15,7 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
 .AddCookie()
-    .AddOpenIdConnect("t1", options => // OpenIddict server 
+    .AddOpenIdConnect("t1", options => // Duende IdentityServer 
     {
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         builder.Configuration.GetSection("IdentityServerSettings").Bind(options);
@@ -29,6 +29,7 @@ builder.Services.AddAuthentication(options =>
         {
             NameClaimType = "name"
         };
+        options.CallbackPath = "/signin-oidc-t1";
     })
     .AddOpenIdConnect("t2", options => // OpenIddict server 
     {
@@ -44,6 +45,7 @@ builder.Services.AddAuthentication(options =>
         {
             NameClaimType = "name"
         };
+        options.CallbackPath = "/signin-oidc";
     });
 
 builder.Services.AddControllers();
