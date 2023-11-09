@@ -5,6 +5,9 @@
 }
 
 <div class="text-center">
+
+    <div><b>AuthScheme:</b> @Model.AuthScheme</div>
+    <br />
 @foreach(var claim in Model.Claims)
 {
     <div><b>@claim.Type</b> @claim.Value</div>
