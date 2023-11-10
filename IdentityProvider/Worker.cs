@@ -47,6 +47,7 @@ public class Worker : IHostedService
 
             // OIDC Code flow confidential client
             var client = await manager.FindByClientIdAsync("codeflowpkceclient");
+            //await manager.DeleteAsync(client);
             if (client is null)
             {
                 await manager.CreateAsync(new OpenIddictApplicationDescriptor
@@ -65,8 +66,8 @@ public class Worker : IHostedService
                     },
                     RedirectUris =
                     {
-                        new Uri("https://localhost:44373/signin-oidc-t1"),
-                        new Uri("https://localhost:7027/signin-oidc-t1")
+                        new Uri("https://localhost:44373/signin-oidc-t2"),
+                        new Uri("https://localhost:7027/signin-oidc-t2")
                     },
                     ClientSecret = "codeflow_pkce_client_secret",
                     Permissions =
