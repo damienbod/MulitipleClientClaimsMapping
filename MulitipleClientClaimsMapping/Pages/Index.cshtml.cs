@@ -18,9 +18,13 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        var authProperties = HttpContext.Features.GetRequiredFeature<IAuthenticateResultFeature>();
-        var ticketProperties = authProperties.AuthenticateResult!.Ticket!.Properties;
-        AuthScheme = authProperties.AuthenticateResult!.Ticket!.Properties.Items[".AuthScheme"];
+        if(User.Identity!.IsAuthenticated)
+        {
+            var test = HttpContext.Features.FirstOrDefault(f => f.Key == typeof(IAuthenticateResultFeature));
+            var authProperties = HttpContext.Features.GetRequiredFeature<IAuthenticateResultFeature>();
+            AuthScheme = authProperties.AuthenticateResult!.Ticket!.Properties.Items[".AuthScheme"];
+        }
+       
         Claims = User.Claims;
     }
 }
