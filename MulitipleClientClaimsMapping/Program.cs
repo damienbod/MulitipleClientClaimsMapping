@@ -27,6 +27,7 @@ builder.Services.AddAuthentication(options =>
             NameClaimType = "name"
         };
         options.CallbackPath = "/signin-oidc-t1";
+        options.SignedOutCallbackPath = "/signout-oidc-t1";
         options.MapInboundClaims = false;
     })
     .AddOpenIdConnect("t2", options => // OpenIddict server 
@@ -44,6 +45,7 @@ builder.Services.AddAuthentication(options =>
             NameClaimType = "name"
         };
         options.CallbackPath = "/signin-oidc-t2";
+        options.SignedOutCallbackPath = "/signout-oidc-t2";
     });
 
 builder.Services.AddControllers();
