@@ -12,41 +12,41 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
 .AddCookie()
-    .AddOpenIdConnect("t1", options => // Duende IdentityServer 
+.AddOpenIdConnect("t1", options => // Duende IdentityServer 
+{
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    builder.Configuration.GetSection("IdentityServerSettings").Bind(options);
+    options.Authority = builder.Configuration["IdentityServerSettings:Authority"];
+    options.ClientId = builder.Configuration["IdentityServerSettings:ClientId"];
+    options.ClientSecret = builder.Configuration["IdentityServerSettings:ClientSecret"];
+    options.ResponseType = OpenIdConnectResponseType.Code;
+    options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        builder.Configuration.GetSection("IdentityServerSettings").Bind(options);
-        options.Authority = builder.Configuration["IdentityServerSettings:Authority"];
-        options.ClientId = builder.Configuration["IdentityServerSettings:ClientId"];
-        options.ClientSecret = builder.Configuration["IdentityServerSettings:ClientSecret"];
-        options.ResponseType = OpenIdConnectResponseType.Code;
-        options.SaveTokens = true;
-        options.GetClaimsFromUserInfoEndpoint = true;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            NameClaimType = "name"
-        };
-        options.CallbackPath = "/signin-oidc-t1";
-        options.SignedOutCallbackPath = "/signout-callback-oidc-t1";
-        options.MapInboundClaims = false;
-    })
-    .AddOpenIdConnect("t2", options => // OpenIddict server 
+        NameClaimType = "name"
+    };
+    options.CallbackPath = "/signin-oidc-t1";
+    options.SignedOutCallbackPath = "/signout-callback-oidc-t1";
+    options.MapInboundClaims = false;
+})
+.AddOpenIdConnect("t2", options => // OpenIddict server 
+{
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
+    options.Authority = builder.Configuration["IdentityProviderSettings:Authority"];
+    options.ClientId = builder.Configuration["IdentityProviderSettings:ClientId"];
+    options.ClientSecret = builder.Configuration["IdentityProviderSettings:ClientSecret"];
+    options.ResponseType = OpenIdConnectResponseType.Code;
+    options.SaveTokens = true;
+    options.GetClaimsFromUserInfoEndpoint = true;
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
-        options.Authority = builder.Configuration["IdentityProviderSettings:Authority"];
-        options.ClientId = builder.Configuration["IdentityProviderSettings:ClientId"];
-        options.ClientSecret = builder.Configuration["IdentityProviderSettings:ClientSecret"];
-        options.ResponseType = OpenIdConnectResponseType.Code;
-        options.SaveTokens = true;
-        options.GetClaimsFromUserInfoEndpoint = true;
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            NameClaimType = "name"
-        };
-        options.CallbackPath = "/signin-oidc-t2";
-        options.SignedOutCallbackPath = "/signout-callback-oidc-t2";
-    });
+        NameClaimType = "name"
+    };
+    options.CallbackPath = "/signin-oidc-t2";
+    options.SignedOutCallbackPath = "/signout-callback-oidc-t2";
+});
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
