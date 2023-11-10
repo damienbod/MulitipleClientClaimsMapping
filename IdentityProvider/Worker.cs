@@ -65,8 +65,8 @@ public class Worker : IHostedService
                     },
                     RedirectUris =
                     {
-                        new Uri("https://localhost:44373/signin-oidc"),
-                        new Uri("https://localhost:7027/signin-oidc")
+                        new Uri("https://localhost:44373/signin-oidc-t1"),
+                        new Uri("https://localhost:7027/signin-oidc-t1")
                     },
                     ClientSecret = "codeflow_pkce_client_secret",
                     Permissions =

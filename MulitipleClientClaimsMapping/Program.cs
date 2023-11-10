@@ -6,9 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var authConfigurations = builder.Configuration.GetSection("AuthConfigurations");
-var stsServer = authConfigurations["StsServer"];
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -46,7 +43,7 @@ builder.Services.AddAuthentication(options =>
         {
             NameClaimType = "name"
         };
-        options.CallbackPath = "/signin-oidc";
+        options.CallbackPath = "/signin-oidc-t2";
     });
 
 builder.Services.AddControllers();
