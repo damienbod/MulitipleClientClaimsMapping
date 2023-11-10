@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MulitipleClientClaimsMapping.Controllers;
@@ -27,13 +28,36 @@ public class AccountController : ControllerBase
         }, "t1");
     }
 
+    /// <summary>
+    /// Can be used if you need to link from the UI
+    /// You can also use the logout page
+    /// </summary>
     [ValidateAntiForgeryToken]
     [Authorize]
     [HttpPost("Logout")]
-    public IActionResult Logout() => SignOut(new AuthenticationProperties 
-    { 
-        RedirectUri = "/" 
-    },
-    CookieAuthenticationDefaults.AuthenticationScheme,
-    OpenIdConnectDefaults.AuthenticationScheme);
+    public IActionResult Logout()
+    {
+        if (User.Identity!.IsAuthenticated)
+        {
+            var authProperties = HttpContext.Features.GetRequiredFeature<IAuthenticateResultFeature>();
+            var schemeToLogout = authProperties.AuthenticateResult!.Ticket!.Properties.Items[".AuthScheme"];
+
+            if (schemeToLogout != null)
+            {
+                return SignOut(new AuthenticationProperties
+                {
+                    RedirectUri = "/SignedOut"
+                },
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                schemeToLogout);
+            }
+        }
+
+        return SignOut(new AuthenticationProperties
+        {
+            RedirectUri = "/SignedOut"
+        },
+        CookieAuthenticationDefaults.AuthenticationScheme,
+        OpenIdConnectDefaults.AuthenticationScheme);
+    }
 }

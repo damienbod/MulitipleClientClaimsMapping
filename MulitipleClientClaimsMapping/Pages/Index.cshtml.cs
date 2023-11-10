@@ -20,7 +20,6 @@ public class IndexModel : PageModel
     {
         if(User.Identity!.IsAuthenticated)
         {
-            var test = HttpContext.Features.FirstOrDefault(f => f.Key == typeof(IAuthenticateResultFeature));
             var authProperties = HttpContext.Features.GetRequiredFeature<IAuthenticateResultFeature>();
             AuthScheme = authProperties.AuthenticateResult!.Ticket!.Properties.Items[".AuthScheme"];
         }
