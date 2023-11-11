@@ -14,8 +14,8 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect("t1", options => // Duende IdentityServer 
 {
-    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     builder.Configuration.GetSection("IdentityServerSettings").Bind(options);
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
@@ -23,14 +23,12 @@ builder.Services.AddAuthentication(options =>
     {
         NameClaimType = "name"
     };
-    options.CallbackPath = "/signin-oidc-t1";
-    options.SignedOutCallbackPath = "/signout-callback-oidc-t1";
     options.MapInboundClaims = false;
 })
 .AddOpenIdConnect("t2", options => // OpenIddict server 
 {
-    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
+    options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
@@ -38,8 +36,6 @@ builder.Services.AddAuthentication(options =>
     {
         NameClaimType = "name"
     };
-    options.CallbackPath = "/signin-oidc-t2";
-    options.SignedOutCallbackPath = "/signout-callback-oidc-t2";
 });
 
 builder.Services.AddControllers();
