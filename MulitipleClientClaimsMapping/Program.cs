@@ -16,9 +16,6 @@ builder.Services.AddAuthentication(options =>
 {
     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     builder.Configuration.GetSection("IdentityServerSettings").Bind(options);
-    options.Authority = builder.Configuration["IdentityServerSettings:Authority"];
-    options.ClientId = builder.Configuration["IdentityServerSettings:ClientId"];
-    options.ClientSecret = builder.Configuration["IdentityServerSettings:ClientSecret"];
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
@@ -34,9 +31,6 @@ builder.Services.AddAuthentication(options =>
 {
     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     builder.Configuration.GetSection("IdentityProviderSettings").Bind(options);
-    options.Authority = builder.Configuration["IdentityProviderSettings:Authority"];
-    options.ClientId = builder.Configuration["IdentityProviderSettings:ClientId"];
-    options.ClientSecret = builder.Configuration["IdentityProviderSettings:ClientSecret"];
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.SaveTokens = true;
     options.GetClaimsFromUserInfoEndpoint = true;
