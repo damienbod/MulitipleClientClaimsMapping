@@ -1,8 +1,9 @@
-# Mulitiple Client claims mapping
+# Mulitiple identity provider OpenID Connect clients
 
 [![.NET](https://github.com/damienbod/MulitipleClientClaimsMapping/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/MulitipleClientClaimsMapping/actions/workflows/dotnet.yml)
 
 [Authentication with multiple identity providers in ASP.NET Core](https://damienbod.com)
+
 
 ## Links
 
