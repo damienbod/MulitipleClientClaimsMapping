@@ -4,6 +4,7 @@
 
 [Authentication with multiple identity providers in ASP.NET Core](https://damienbod.com)
 
+![Setup](https://github.com/damienbod/MulitipleClientClaimsMapping/blob/main/images/schemes__idp_01.png)
 
 ## Links
 
