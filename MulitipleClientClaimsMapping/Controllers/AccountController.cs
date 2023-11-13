@@ -14,18 +14,20 @@ public class AccountController : ControllerBase
     public ActionResult LoginOpenIddict(string returnUrl)
     {
         return Challenge(new AuthenticationProperties
-        {
-            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/", 
-        }, "t2");
+            {
+                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/", 
+            }, 
+            "t2");
     }
 
     [HttpGet("LoginIdentityServer")]
     public ActionResult LoginIdentityServer(string returnUrl)
     {
         return Challenge(new AuthenticationProperties
-        {
-            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
-        }, "t1");
+            {
+                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
+            }, 
+            "t1");
     }
 
     /// <summary>
@@ -45,19 +47,19 @@ public class AccountController : ControllerBase
             if (schemeToLogout != null)
             {
                 return SignOut(new AuthenticationProperties
-                {
-                    RedirectUri = "/SignedOut"
-                },
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                schemeToLogout);
+                    {
+                        RedirectUri = "/SignedOut"
+                    },
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    schemeToLogout);
             }
         }
 
         return SignOut(new AuthenticationProperties
-        {
-            RedirectUri = "/SignedOut"
-        },
-        CookieAuthenticationDefaults.AuthenticationScheme,
-        OpenIdConnectDefaults.AuthenticationScheme);
+            {
+                RedirectUri = "/SignedOut"
+            },
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            OpenIdConnectDefaults.AuthenticationScheme);
     }
 }
