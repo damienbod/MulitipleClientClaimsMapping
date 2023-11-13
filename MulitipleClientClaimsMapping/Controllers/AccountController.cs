@@ -55,6 +55,7 @@ public class AccountController : ControllerBase
             }
         }
 
+        // default, does not logout of the OIDC server because the scheme does not match
         return SignOut(new AuthenticationProperties
             {
                 RedirectUri = "/SignedOut"
