@@ -6,6 +6,10 @@
 
 ![Setup](https://github.com/damienbod/MulitipleClientClaimsMapping/blob/main/images/schemes__idp_01.png)
 
+## History
+
+2023-11-16 Updated .NET 8
+
 ## Links
 
 https://learn.microsoft.com/en-us/aspnet/core/security
