@@ -18,12 +18,12 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-        if(User.Identity!.IsAuthenticated)
+        if (User.Identity!.IsAuthenticated)
         {
             var authProperties = HttpContext.Features.GetRequiredFeature<IAuthenticateResultFeature>();
             AuthScheme = authProperties.AuthenticateResult!.Ticket!.Properties.Items[".AuthScheme"];
         }
-       
+
         Claims = User.Claims;
     }
 }

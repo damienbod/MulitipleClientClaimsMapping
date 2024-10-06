@@ -14,9 +14,9 @@ public class AccountController : ControllerBase
     public ActionResult LoginOpenIddict(string returnUrl)
     {
         return Challenge(new AuthenticationProperties
-            {
-                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/", 
-            }, 
+        {
+            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/",
+        },
             "t2");
     }
 
@@ -24,9 +24,9 @@ public class AccountController : ControllerBase
     public ActionResult LoginIdentityServer(string returnUrl)
     {
         return Challenge(new AuthenticationProperties
-            {
-                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
-            }, 
+        {
+            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
+        },
             "t1");
     }
 
@@ -47,9 +47,9 @@ public class AccountController : ControllerBase
             if (schemeToLogout != null)
             {
                 return SignOut(new AuthenticationProperties
-                    {
-                        RedirectUri = "/SignedOut"
-                    },
+                {
+                    RedirectUri = "/SignedOut"
+                },
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     schemeToLogout);
             }
@@ -57,9 +57,9 @@ public class AccountController : ControllerBase
 
         // default, does not logout of the OIDC server because the scheme does not match
         return SignOut(new AuthenticationProperties
-            {
-                RedirectUri = "/SignedOut"
-            },
+        {
+            RedirectUri = "/SignedOut"
+        },
             CookieAuthenticationDefaults.AuthenticationScheme,
             OpenIdConnectDefaults.AuthenticationScheme);
     }
