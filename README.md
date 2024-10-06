@@ -1,4 +1,4 @@
-# MultipleAdd-Migration "init_identity_new"  identity provider OpenID Connect clients
+# Multiple add-Migration "init_identity_new"  identity provider OpenID Connect clients
 
 [![.NET](https://github.com/damienbod/MulitipleClientClaimsMapping/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/MulitipleClientClaimsMapping/actions/workflows/dotnet.yml)
 
