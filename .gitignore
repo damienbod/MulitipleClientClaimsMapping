@@ -402,3 +402,4 @@ FodyWeavers.xsd
 /identityserver/AspIdUsers.db-shm
 /identityserver/AspIdUsers.db-wal
 /identityserver/keys/**
+/identityserver/AspIdUsers.db-shm
