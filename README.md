@@ -8,6 +8,7 @@
 
 ## History
 
+- 2026-05-09 Updated packages
 - 2026-03-15 Updated packages, Updated passkeys
 - 2025-12-01 .NET 10
 - 2025-09-28 Updated packages
